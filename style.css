@@ -1,0 +1,100 @@
+.tamaño {
+    height: 20rem;
+    width: 28rem;
+    align-items: center;
+}
+
+.btn_height {
+    height: 4rem;
+}
+
+.ingreso_data {
+    gap: 1rem;
+}
+
+.nav {
+    height: 4rem;
+    align-items: center;
+}
+
+.nimodo {
+    width: 7rem;
+    border-radius: .4rem;
+    border: none;
+}
+
+/* input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+} */
+
+
+/* btn */
+.btn_check {
+    width: 2.5rem;
+    height: 2.5;
+    background: none;
+    color: #00b60f;
+    border-color: #00b60f;
+}
+
+/* ingrsar_data */
+.input_ancho {
+    width: 25rem;
+    border-radius: .4rem;
+    border: none;
+    height: 2.5rem;
+}
+
+#option {
+    width: 3rem;
+    border-radius: .4rem;
+    border: none;
+}
+
+/* tablas */
+
+#ingresos_egresos {
+    justify-items: center;
+}
+
+.top_bot h2 {
+    text-align: right;
+}
+.top_bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* border tablas */
+.border_top {
+    border-top: solid 0.5px black;
+    padding: .5rem;
+    position: relative;
+}
+
+.border_bot {
+    border-bottom: solid 0.5px black;
+    position: relative;
+    
+}
+
+/* boton para borrar la data */
+#borrar_data {
+    z-index: -10;
+    color: red;
+}
+
+
+
+#ingreso_animation {
+    position: absolute;
+    right: 0%;
+    transition-duration: 0.5s ease;
+}
+
+#ingreso_animation.hover {
+    left: 150px;
+}
+
