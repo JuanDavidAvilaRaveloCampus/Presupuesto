@@ -1,0 +1,19 @@
+{
+    "data" : {
+        "presupuesto": {
+            "presupuesto_disponible" : "0",
+            "total_ingresos" : "0"
+        },
+        "tabla" : {
+            "contador_ingresos": {
+                "name": "",
+                "valor": ""
+            },
+            "contador_egresos": {
+                "name": "",
+                "valor": "",
+                "porcentaje": ""
+            }
+        }
+    }
+}

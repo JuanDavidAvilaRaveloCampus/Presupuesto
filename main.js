@@ -6,3 +6,11 @@ componente_ingreso.showIngreso();
 import componente_egresos from "./assets/componentes/componente_egresos.js";
 componente_egresos.showEngreso();
 
+// nav
+import componente_nav from "./assets/componentes/componente_nav.js";
+componente_nav.showNav();
+
+// data todal
+import componentes_Total from "./assets/componentes/componentes_Total.js";
+componentes_Total.showTotal();
+
