@@ -48,7 +48,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #option {
-    width: 3rem;
+    width: 7rem;
     border-radius: .4rem;
     border: none;
 }
@@ -84,12 +84,13 @@ input[type=number]::-webkit-outer-spin-button {
 #borrar_data {
     z-index: -10;
     color: red;
+    display: none;
 }
 
 
 
 #ingreso_animation {
-    position: absolute;
+    /* position: absolute; */
     right: 0%;
     transition-duration: 0.5s ease;
 }
