@@ -10,7 +10,7 @@ export default {
                         <option value="egreso">Egreso</option>
                     </select>
                     <!-- Ingresar data -->
-                    <input class="me-2 input_ancho" type="search" placeholder="Ingresos" aria-label="Search">
+                    <input class="me-2 input_ancho" type="search" placeholder="Ingresos" id='almacenar' aria-label="Search">
                     <input type="number" class="nimodo">
                     <!-- falta quitar los botones de subir y bajar -->
                     <button class="rounded-circle btn_check" type="submit"><i

@@ -1,6 +1,6 @@
 export default {
     ingreso_name : 'holi',
-    ingreso_valor: 0,
+    ingreso_valor: 6665100055,
     ingreso_total: 0,
     // ingreso_porcentaje(){
     //   let porcentaje = this.ingreso_valor * 100 / this.ingreso_total;
