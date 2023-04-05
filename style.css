@@ -1,101 +1,133 @@
-.tamaño {
+/* nav */
+.tamaño_presupuesto {
+    width: 25%;
     height: 20rem;
-    width: 28rem;
-    align-items: center;
+}
+.tamaño_presupuesto div h2 {
+    font-size: 3rem;
+}
+.tamaño_presupuesto div span {
+    font-size: 1.2rem;
 }
 
-.btn_height {
-    height: 4rem;
+.bajar_contador {
+    align-self: self-end;
 }
 
-.ingreso_data {
-    gap: 1rem;
+#mostrar_presupuesto {
+    background-image: url(./assets/img/AdobeStock_287009246.jpeg);
+    object-fit:contain;
+    background-position: center;
+    image-rendering: crisp-edges;
+    background-repeat: no-repeat;
 }
 
-.nav {
-    height: 4rem;
-    align-items: center;
+.posicionar{
+    position: relative;
 }
 
-.nimodo {
-    width: 7rem;
-    border-radius: .4rem;
+.posicionar_div {
+    position: absolute;
+    bottom:10%;
+}
+
+
+/* select */
+#options {
+    border-radius: 5px;
     border: none;
+    height: 3rem;
+    background: #efefef;
 }
-
-/* input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-} */
-
-
-/* btn */
-.btn_check {
-    width: 2rem;
-    height: 2rem;
-    background: none;
-    color: #00b60f;
-    border-color: #00b60f;
+/* input_name */
+#data_name {
+    border-radius: 5px;
+    border: transparent;
+    height: 3rem;
+    width: 22rem;
+    background: #ffffffa7;
 }
-
-/* ingrsar_data */
-.input_ancho {
-    width: 25rem;
-    border-radius: .4rem;
-    border: none;
+/* input_number */
+#data_amout {
+    border-radius: 5px;
+    border: transparent;
+    height: 3rem;
+    background: #ffffffa7;
+}
+/* Btn */
+#btn {
+    border-radius: 50%;
+    border: transparent;
     height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1.2rem;
+    background: rgba(43, 7, 84, 0.712);
+    color: white;
+}
+/* table */
+.div_body {
+    height: 58vh;
 }
 
-#option {
-    width: 7rem;
-    border-radius: .4rem;
-    border: none;
+.tabla {
+    height: fit-content;
+    width: 25rem;
+}
+#contenedor_tabla {
+    top: 15%;
+}
+/* btn eliminar */
+#btn_eliminar_ingreso{
+    left: 38%;
+    bottom: -3%;
+    font-size: 1.5rem;
 }
 
-/* tablas */
 
-#ingresos_egresos {
-    justify-items: center;
+@keyframes animacion_Eliminar {
+    0% {
+        right: 0;
+    }
+    50%{
+        lef: 20px;
+    }
+    100%{
+        right: 40px;
+    }
 }
 
-.top_bot h2 {
-    text-align: right;
-}
-.top_bot {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* border tablas */
-.border_top {
-    border-top: solid 0.5px black;
-    padding: .5rem;
+#div_hover{
+    z-index: 10;
     position: relative;
 }
-
-.border_bot {
-    border-bottom: solid 0.5px black;
-    position: relative;
-    
+tr:hover{
+    animation: animacion_Eliminar .5s ease-out forwards;
 }
 
-/* boton para borrar la data */
-#borrar_data {
-    z-index: -10;
-    color: red;
-    display: none;
+/* estilos */
+/* presupuesto */
+.ingresos {
+    background-color:#ff3ace67;
+    border-radius: 5px;
+}
+.span {
+    right: -18%;
+    bottom: 8%;
+}
+.egresos{
+    background-color:#ff3a3ab9;
+    border-radius: 5px;
 }
 
-
-
-#ingreso_animation {
-    /* position: absolute; */
-    right: 0%;
-    transition-duration: 0.5s ease;
+/* nav */
+nav {
+    background-color: #efefef;
+    height: 5rem;
 }
-
-#ingreso_animation.hover {
-    left: 150px;
+/* tabla */
+.titulos_tabla {
+    font-size: 1.5rem;
 }
-
+td {
+    font-size: 1.2rem;
+}

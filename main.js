@@ -1,33 +1,34 @@
-// ingreso table
-import componente_ingreso from "./assets/componentes/componente_ingreso.js";
-componente_ingreso.showIngreso();
+// PRESUPUESTO DISPONIBLE
 
-// egreso tabla
-import componente_egresos from "./assets/componentes/componente_egresos.js";
-componente_egresos.showEngreso();
+let presupuesto = document.querySelector('#presupuesto');
 
-// data total
-import componentes_Total from "./assets/componentes/componentes_Total.js";
-componentes_Total.showTotal();
-componentes_Total.showData();
-// componentes_Total.data();
+let ingreso_total = document.querySelector('#ingreso_total');
 
+let egreso_total = document.querySelector('#egreso_total');
 
-const ingresar_egresar = document.querySelector('#option');//Detecta la opción del select para asignar el almacenado a una variable, ya sea la de ingresar o egresar
-const input = document.querySelector('.input_ancho');//input data
+let porcentaje_egreso_total = document.querySelector('#porcentaje_egreso_total');
 
-// let ingreso_data = document.querySelector('.ingreso_data');
-// ingreso_data.addEventListener('submit',(e)=>{
-//     e.preventDefault();
-//     console.log(ingreso_data)
+// NAV
+let options = document.querySelector('#options').value; // condicional según la opción
 
-//     let option = document.querySelector('#option');
-//     console.log(option.value);
+let data_name = document.querySelector('#data_name').value;
 
-//     let data = document.querySelector('#almacenar');
-//     console.log(data.value);
+let data_amout = document.querySelector('#data_amout').value;
 
-//     let cantidad = document.querySelector('#number');
-//     console.log(cantidad.value);
-// });
+let formulario = document.querySelector('#formulario');
+formulario.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    console.log(data.option);
+
+    if (data.option == ingreso){
+        
+    } else {
+
+    }
+
+    console.log(options);
+    console.log(data_name);
+    console.log(data_amout);
+})
 
