@@ -25,29 +25,12 @@
     <main>
         <div class="container-fluid d-flex justify-content-center" id="mostrar_presupuesto">
             <!-- PRESUPUESTRO -->
-            <div class="d-flex flex-column text-center  tamaño_presupuesto posicionar">
-                <div class="mt-4 d-flex flex-column container-fluid text-white">
-                    <span>Presupuesto Disponible</span>
-                    <h2 id="presupuesto">$8,452,000.00</h2>
-                </div>
-                <div class="container-fluid  bajar_contador posicionar_div px-0">
-                    <div class="container-fluid d-flex justify-content-between py-2 ingresos">
-                        <span class="text-dark"><b>INGRESOS</b></span>
-                        <span class="text-white" id="ingreso_total">$9,000,000.00</span>
-                    </div>
-                    <div class="d-flex">
-                        <div class="container-fluid d-flex py-2 mt-3 egresos justify-content-between">
-                            <span class=""><b>EGRESOS</b></span>
-                            <div>
-                                <span id="egreso_total">$9,000,000.00</span>
-                            </div>
-                        </div>
-                        <span class="ms-5 position-absolute span text-white" id="porcentaje_egreso_total">-6.09%</span>
-                    </div>
-                </div>
+            <div class="d-flex flex-column text-center  tamaño_presupuesto posicionar" id="show_presupuesto">
+                
             </div>
         </div>
 
+        <!-- NAVAR -->
         <div>
             <nav class="navbar ">
                 <!-- NAVAR  DATA_INGRESO -->
@@ -65,39 +48,23 @@
 
             </nav>
         </div>
-        <div class="container-fluid d-flex  div_body justify-content-center position-relative">
-            <div class="d-flex text-start  w-75 justify-content-around position-absolute" id="contenedor_tabla">
-                <div class=" tabla ">
+
+        <!-- TABLE -->
+        <div class="container-fluid d-flex  div_body justify-content-center position-relative" id="contenedor_tabla">
+            <div class="d-flex text-start  w-75 justify-content-around position-absolute" >
+                <div class=" tabla mt-4 ">
                     <table class="container-fluid">
                         <div class="mb-3 titulos_tabla text-success">INGRESOS</div>
-                        <tbody>
-                            <tr class="position-relative">
-                                <td class="container-fluid d-flex justify-content-between ">
-                                    <div>pago campus</div>
-                                    <div>654615</div>
-                                    <div id="div_hover">25%</div>
-                                </td>
-                                <div id="btn-btn_eliminar_ingreso" class="position-absolute end-0 text-danger"><i class="fa-solid fa-xmark"></i></div>
-                            </tr>
-                        </tbody>
+                        <tbody id="tabla_ingreso"></tbody>
                     </table>
                 </div>
-                <div class=" tabla ">
+                <div class=" tabla mt-4">
                     <table class="container-fluid ">
                         <div class="mb-3 titulos_tabla text-danger">EGRESOS</div>
-                        <tbody>
-                            <tr class="position-relative">
-                                <td class="container-fluid d-flex justify-content-between ">
-                                    <div>pago campus</div>
-                                    <div>654615</div>
-                                    <div id="div_hover">25%</div>
-                                </td>
-                                <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger"><i class="fa-solid fa-xmark"></i></div>
-                            </tr>
-                        </tbody>
+                        <tbody id="tabla_egreso"></tbody>
                     </table>
-                </div>
             </div>
+        </div>
 
         </div>
     </main>
