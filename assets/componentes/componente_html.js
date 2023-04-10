@@ -1,5 +1,7 @@
 import config from "../config/config.js";
 
+const worker = new Worker('worker/worker.js', {type: "module"});
+
 let total_data_ingreso = config.estructura_data.data_ingreso;
 let total_data_egreso = config.estructura_data.data_egreso;
 
@@ -8,22 +10,14 @@ let porcentaje = 0;
 let total_ingresos = config.estructura_data.ingreso;
 let total_egresos = config.estructura_data.egreso;
 
-const worker = new window.Worker('../worker/worker.js');
-
-
-
-
 let data_presupuesto = config.estructura_data.presupuesto;
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let data_name = document.querySelector('#data_name'); //almacena el valor del name
-
     let data_amout = document.querySelector('#data_amout'); //alamcena la cantidad numérica de la data 
-
     let data_formulario = Object.fromEntries(new FormData(e.target)).option; // ingreso o egreso
-
 
     // console.log(data_formulario);
     //detecta el value en los inputs
@@ -32,28 +26,46 @@ formulario.addEventListener("submit", (e) => {
         // console.log(total_data_ingreso);
         total_data_ingreso.unshift([data_name.value, data_amout.value]);
 
-        mostrar_ingreso();
+        worker.postMessage({
+            module: "mostrar_ingreso", data: {
+                total_ingresos: total_ingresos,
+                total_data_ingreso: total_data_ingreso,
+            }
+            
+        },console.log('jumm'))
 
-        let name = total_data_ingreso[0][0];
-        let number = total_data_ingreso[0][1];
-        let new_number = Number(number).toLocaleString();
+        worker.addEventListener('message', (e) => {
+            let doc = new DOMParser().parseFromString(e.data, 'text/html')
+            document.querySelector('#ingreso_total').append(...doc.body.children);
 
-        document.querySelector('#tabla_ingreso').insertAdjacentHTML("beforeend", `
-        <tr class="position-relative">
-            <td class="container-fluid d-flex justify-content-between ">
-                <div>${name}</div>
-                <div>${new_number}</div>
-                <div id="div_hover" class="text-success">${total_data_ingreso[0][2]}%</div>
-            </td>
-            <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger"><i class="fa-solid fa-xmark"></i></div>
-        </tr>
-        `);
+            console.log(doc);
+
+            let name = doc[0][0];
+            let number = doc[0][1];
+            let new_number = Number(number).toLocaleString();
+
+            document.querySelector('#tabla_ingreso').insertAdjacentHTML("beforeend", `
+                <tr class="position-relative">
+                    <td class="container-fluid d-flex justify-content-between ">
+                        <div>${name}</div>
+                        <div>${new_number}</div>
+                        <div id="div_hover" class="text-success">${total_data_ingreso[0][2]}%</div>
+                    </td>
+                    <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger"><i class="fa-solid fa-xmark"></i></div>
+                </tr>
+            `);
+        });
+
+
+        // mostrar_ingreso();
+
+
 
     } else if (data_formulario == 'egreso' && data_name.value != '') {
         total_data_egreso.unshift([data_name.value, data_amout.value]);
         console.log(config.estructura_data.data_egreso);
 
-        mostrar_egreso();
+        // mostrar_egreso();
 
         let number = total_data_egreso[0][1];
         let new_number = Number(number).toLocaleString();
@@ -77,96 +89,10 @@ formulario.addEventListener("submit", (e) => {
 });
 
 
-function mostrar_ingreso() {
-    for (let i = 0; i < 1; i++) {
-        for (let j = 0; j < 1; j++) {
 
-            total_ingresos += parseInt(total_data_ingreso[0][1]);
-
-            if (total_data_ingreso.length < 1) {
-                total_ingresos += parseInt(total_data_ingreso[1][1]);
-            };
-        };
-        imprimir_Data_ingreso();
-    };
-
-    //muestra todos los porcentajes
-    total_data_ingreso.forEach((item, i ,ar)=>{
-        console.log(i);
-        let porcentaje_ingreso = total_data_ingreso[i][1] * 100 / Number(total_ingresos);
-        let new_data = Math.round(porcentaje_ingreso);
-
-        total_data_ingreso[i].splice(2,total_data_ingreso.length - 2, new_data);
-        
-        // console.log(total_data_ingreso[i][1]);
-        console.log(ar);
-        console.log(total_ingresos);
-
-    });
-};
-
-function imprimir_Data_ingreso() {
-
-    document.querySelector('#ingreso_total').textContent = `$${total_ingresos}`;
-
-    data_presupuesto = total_ingresos - total_egresos;
-    let new_presupuesto = data_presupuesto.toLocaleString();
-    
-    document.querySelector('#presupuesto').textContent = `$${new_presupuesto}`;
-
-        
-};
-
-function mostrar_egreso() {
-    for (let i = 0; i < 1; i++) {
-        for (let j = 0; j < 1; j++) {
-            total_egresos += parseInt(total_data_egreso[0][1]);
-
-            if (total_data_egreso.length < 1) {
-                total_egresos += parseInt(total_data_egreso[1][1]);
-            };
-
-        };
-        imprimir_Data_egreso();
-    };
-    total_data_egreso.forEach((item, i ,ar)=>{
-        let data = total_data_egreso[i][1] * 100 / Number(total_egresos);
-
-        let new_data = Math.round(Number(data))
-
-        console.log(total_data_egreso[i][1]);
-        console.log(total_egresos);
-        console.log(data);
-        console.log(total_data_egreso[i]);
-
-        total_data_egreso[i].push(new_data);
-    });
-};
-
-function imprimir_Data_egreso() {
-    //imprime valor total del egreso
-    document.querySelector('#egreso_total').textContent = `$${total_egresos}`;
-
-    //imprime valor total del presupuesto según el ingreso y egreso
-    data_presupuesto = total_ingresos - total_egresos;
-
-    let new_presupuesto = data_presupuesto.toLocaleString();
-
-    document.querySelector('#presupuesto').textContent = `$${new_presupuesto}`;
-    
-    //porcentaje total
-    let porcentaje_egreso_total = (total_egresos * 100) / total_ingresos;
-
-    let new_porcentaje = Math.round( porcentaje_egreso_total );
-
-    
-    //imprime el porcentaje total
-    document.querySelector('#porcentaje_egreso_total').textContent = `${new_porcentaje}%`
-};
 
 export default {
     show_html() {
-        
         let show_presupuesto = document.querySelector('#show_presupuesto').insertAdjacentHTML('beforeend', `
         <div class="mt-4 d-flex flex-column container-fluid text-white">
                 <span>Presupuesto Disponible</span>
