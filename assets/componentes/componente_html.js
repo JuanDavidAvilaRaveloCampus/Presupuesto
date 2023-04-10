@@ -8,23 +8,19 @@ let total_ingresos = config.estructura_data.ingreso;
 let total_egresos = config.estructura_data.egreso;
 let data_presupuesto = config.estructura_data.presupuesto;
 
-let presupuesto = document.querySelector('#presupuesto'); // = suma de todos los ingresos-ingresos
-let ingresos = document.querySelector('#ingreso_total'); // suma de todos los ingresos
-let egresos = document.querySelector('#egreso_total');
-
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    let data_name = document.querySelector('#data_name').value; //almacena el valor del name
+    let data_name = document.querySelector('#data_name'); //almacena el valor del name
 
-    let data_amout = document.querySelector('#data_amout').value; //alamcena la cantidad numérica de la data 
+    let data_amout = document.querySelector('#data_amout'); //alamcena la cantidad numérica de la data 
 
     let data_formulario = Object.fromEntries(new FormData(e.target)).option; // ingreso o egreso
 
     
     // console.log(data_formulario);
     //detecta el value en los inputs
-    if (data_formulario == 'ingreso' && data_name != '') {
-        total_data_ingreso.unshift([data_name,data_amout]);
+    if (data_formulario == 'ingreso' && data_name.value != '') {
+        total_data_ingreso.unshift([data_name.value,data_amout.value]);
         // console.log(total_data_ingreso);
 
         document.querySelector('#tabla_ingreso').insertAdjacentHTML("beforeend",`
@@ -39,9 +35,10 @@ formulario.addEventListener("submit", (e) => {
         `);
         
         mostrar_ingreso();
+        
 
-    } else if (data_formulario == 'egreso' && data_name != '') {
-        total_data_egreso.unshift([data_name,data_amout]);
+    } else if (data_formulario == 'egreso' && data_name.value != '') {
+        total_data_egreso.unshift([data_name.value,data_amout.value]);
         
         // console.log(config.estructura_data.data_egreso);
         // console.log(total_data_egreso);
@@ -71,6 +68,10 @@ function mostrar_ingreso () {
                 total_ingresos += parseInt(total_data_ingreso[1][1]);
             };
             console.log(`soy el log del final de la funcion y la data que debo mostrar es ${total_ingresos}`);
+
+            document.querySelector('#ingreso_total').textContent = `$${total_ingresos}`;
+
+            document.querySelector('#presupuesto').textContent = `$${total_ingresos - total_egresos}`;
         };
     };
 };
@@ -83,6 +84,10 @@ function mostrar_egreso() {
             if  (total_data_egreso.length < 1){
                 total_egresos += parseInt(total_data_egreso[1][1]);
                 console.log('soy egreso ' + total_egresos);
+                
+                document.querySelector('#egreso_total').textContent = `$${total_egresos}`;
+
+                document.querySelector('#presupuesto').textContent = `$${total_ingresos - total_egresos}`;
             };
         };
     };
@@ -94,25 +99,24 @@ export default {
         let show_presupuesto = document.querySelector('#show_presupuesto').insertAdjacentHTML('beforeend', `
         <div class="mt-4 d-flex flex-column container-fluid text-white">
                 <span>Presupuesto Disponible</span>
-                <h2 id= "presupuesto"></h2>
+                <h2 id= "presupuesto">$0</h2>
             </div>
             <div class="container-fluid  bajar_contador posicionar_div px-0">
                 <div class="container-fluid d-flex justify-content-between py-2 ingresos">
                     <span class="text-dark"><b>INGRESOS</b></span>
-                    <span class="text-white" id="ingreso_total">$</span>
+                    <span class="text-white" id="ingreso_total">$0</span>
                 </div>
             <div class="d-flex">
                 <div class="container-fluid d-flex py-2 mt-3 egresos justify-content-between">
                     <span class=""><b>EGRESOS</b></span>
                     <div>
-                        <span id="egreso_total"></span>
+                        <span id="egreso_total">$0</span>
                     </div>
                 </div>
                 <span class="ms-5 position-absolute span text-white" id="porcentaje_egreso_total">-6.09%</span>
             </div>
         </div>
         `);
-        // presupuesto = 
     }
 };
 
