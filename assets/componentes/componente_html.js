@@ -64,6 +64,7 @@ function mostrar_ingreso () {
     for (let i = 0; i < 1; i++) {
         for (let j = 0; j < 1; j++) {
             total_ingresos += parseInt(total_data_ingreso[0][1]);
+
             if  (total_data_ingreso.length < 1){
                 total_ingresos += parseInt(total_data_ingreso[1][1]);
             };
@@ -80,15 +81,15 @@ function mostrar_egreso() {
     for (let i = 0; i < 1; i++) {
         for (let j = 0; j < 1; j++) {
             total_egresos += parseInt(total_data_egreso[0][1]);
-            console.log(total_egresos);
+
             if  (total_data_egreso.length < 1){
                 total_egresos += parseInt(total_data_egreso[1][1]);
+            };  
                 console.log('soy egreso ' + total_egresos);
                 
                 document.querySelector('#egreso_total').textContent = `$${total_egresos}`;
 
                 document.querySelector('#presupuesto').textContent = `$${total_ingresos - total_egresos}`;
-            };
         };
     };
 }
