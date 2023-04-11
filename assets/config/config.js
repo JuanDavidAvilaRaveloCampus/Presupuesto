@@ -1,10 +1,12 @@
 export default {
-    estructura_data : {
-        porcentaje: 0,
-        presupuesto: 0,
-        ingreso : 0,
-        egreso: 0,
-        data_ingreso: [],
-        data_egreso: [],
+    
+    storage(){
+        localStorage.setItem('data',JSON.stringify({ //envia data storage //el nombre de la data en el storage es 'data'
+            estructura_data : {
+                data_ingreso: [],
+                data_egreso: [],
+            }
+        }));
+
     }
 }

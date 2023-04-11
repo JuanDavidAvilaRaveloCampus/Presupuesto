@@ -1,5 +1,5 @@
 
-export let data = {
+export  let data = {
     
     mosrar_ingreso(p1) {
         for (let i = 0; i < 1; i++) {
@@ -89,9 +89,15 @@ export let data = {
         
         //imprime el porcentaje total
         document.querySelector('#porcentaje_egreso_total').textContent = `${new_porcentaje}%`
+    },
+
+    consolita(){
+        // return console.log('holi ' + p1);
+        return 5
     }
+
 };
 
 self.addEventListener('message',(e)=>{
-    postMessage(data[`${e.module}`](e.data))
+    postMessage(data[`${e.module}`])
 });
