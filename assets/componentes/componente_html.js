@@ -12,9 +12,11 @@ export default {
         let mostrar_presupuesto = document.querySelector('#presupuesto');
         let ingreso_total = document.querySelector('#ingreso_total');
         let egreso_total = document.querySelector('#egreso_total');
+        let porcentaje_egreso_total = document.querySelector('#porcentaje_egreso_total');
 
-        let egresos_placebo = 0;
-        let ingresos_placebo = 0;
+
+        let egresos = 0;
+        let ingresos = 0;
 
         //placebo
         ingreso_total.textContent = '$0';
@@ -43,17 +45,17 @@ export default {
                     };
                 };
 
-                ingresos_placebo = 0;
+                ingresos = 0;
 
                 //saca el total de ingresos
-                for (let i = 0; i < storage.estructura_data.data_egreso.length; i++) {
-                    ingresos_placebo += Number(storage.estructura_data.data_egreso[i].valor);
-                    console.log(ingresos_placebo);
+                for (let i = 0; i < storage.estructura_data.data_ingreso.length; i++) {
+                    ingresos += Number(storage.estructura_data.data_ingreso[i].valor);
+                    console.log(ingresos);
                 };
 
                 storage.estructura_data.data_ingreso.map((val, id) => {
                     //crea el porcentaje para cada iteración segun el total
-                    let a = porcentaje(ingresos_placebo, val.valor);
+                    let a = porcentaje(ingresos, val.valor);
                     //imprime toda la data de la tabla correspondiente
                     document.querySelector('#tabla_ingreso').insertAdjacentHTML('beforeend', `
                         <tr class="position-relative">
@@ -80,16 +82,16 @@ export default {
                     };
                 };
 
-                egresos_placebo = 0;
+                egresos = 0;
 
+                //saca el total de ingresos
                 for (let i = 0; i < storage.estructura_data.data_egreso.length; i++) {
-                    egresos_placebo += Number(storage.estructura_data.data_egreso[i].valor);
-                    console.log(egresos_placebo);
-                }
+                    egresos += Number(storage.estructura_data.data_egreso[i].valor);
+                };
 
                 storage.estructura_data.data_egreso.map((val, id) => {
                     //asigna a "a" el porcentaje según el total de egresos
-                    var a = porcentaje(egresos_placebo, val.valor);
+                    var a = porcentaje(egresos, val.valor);
 
                     document.querySelector('#tabla_egreso').insertAdjacentHTML('beforeend', `
                         <tr class="position-relative">
@@ -108,7 +110,12 @@ export default {
                 console.log(`egreso listo`);
             };
 
-            let presupuesto = ingresos_placebo + egresos_placebo;
+            let presupuesto = ingresos + egresos;
+
+            mostrar_presupuesto.textContent = moneda(presupuesto);
+            ingreso_total = moneda(ingresos);
+            egreso_total = moneda(egresos);
+            porcentaje_egreso_total = porcentaje(presupuesto,egresos)
             console.log(presupuesto);
             
             console.log(`parte 1`);
