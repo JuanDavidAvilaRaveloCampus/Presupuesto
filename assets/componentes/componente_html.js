@@ -110,7 +110,7 @@ export default {
                 console.log(`egreso listo`);
             };
 
-            let presupuesto = ingresos + egresos;
+            let presupuesto = ingresos - egresos;
 
             mostrar_presupuesto.textContent = moneda(presupuesto);
             ingreso_total = moneda(ingresos);
