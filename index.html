@@ -27,37 +27,36 @@
             <div class="d-flex flex-column text-center  tamaño_presupuesto posicionar" id="show_presupuesto">
                 <div class="mt-4 d-flex flex-column container-fluid text-white">
                     <span>Presupuesto Disponible</span>
-                    <h2 id= "presupuesto">$0</h2>
+                    <h2 class="mt-2" id="presupuesto"></h2>
                 </div>
-                <div class="container-fluid  bajar_contador posicionar_div px-0">
+                <div class="container-fluid  bajar_contador posicionar_div px-0 py-2">
                     <div class="container-fluid d-flex justify-content-between py-2 ingresos">
                         <span class="text-dark"><b>INGRESOS</b></span>
                         <span class="text-white" id="ingreso_total">$0</span>
                     </div>
-                <div class="d-flex">
-                    <div class="container-fluid d-flex py-2 mt-3 egresos justify-content-between">
-                        <span class=""><b>EGRESOS</b></span>
-                        <div>
-                            <span id="egreso_total">$0</span>
+                    <div class="d-flex">
+                        <div class="container-fluid d-flex py-2 mt-3 egresos justify-content-between">
+                            <span class=""><b>EGRESOS</b></span>
+                            <div>
+                                <span id="egreso_total">$0</span>
+                            </div>
                         </div>
+                        <span class="ms-5 position-absolute span text-white" id="porcentaje_egreso_total">0%</span>
                     </div>
-                    <span class="ms-5 position-absolute span text-white" id="porcentaje_egreso_total">0%</span>
                 </div>
             </div>
-            </div>
         </div>
-
         <!-- NAVAR -->
         <div>
             <nav class="navbar ">
                 <!-- NAVAR  DATA_INGRESO -->
-                <form class="container-fluid d-flex justify-content-center gap-3" id="formulario">
+                <form class="container-fluid d-flex justify-content-center gap-3 mt-2" id="formulario">
                     <select name="option" id="options">
                         <option value="ingreso">Ingreso</option>
                         <option value="egreso">Egreso</option>
                     </select>
                     <input id="data_name" name="name" type="text" placeholder="Ingrese nombre del dato a almacenar">
-                    <input id="data_amout"name="valor"  type="number" placeholder="Ingrese el monto">
+                    <input id="data_amout" name="valor" type="number" placeholder="Ingrese el monto">
                     <!-- BTON -->
                     <input type="submit" value="" id="btn" class="btn">
                 </form>
@@ -68,18 +67,14 @@
 
         <!-- TABLE -->
         <div class="container-fluid d-flex  div_body justify-content-center position-relative" id="contenedor_tabla">
-            <div class="d-flex text-start  w-75 justify-content-around position-absolute" >
+            <div class="d-flex text-start  w-75 justify-content-around position-absolute">
                 <div class=" tabla mt-4 ">
                     <table class="container-fluid">
                         <div class="mb-3 titulos_tabla text-success">INGRESOS</div>
-                        <tbody id="tabla_ingreso"><tr class="position-relative">
-                            <td class="container-fluid d-flex justify-content-between ">
-                                <div>${name}</div>
-                                <div>${new_number}</div>
-                                <div id="div_hover" class="text-success">${total_data_ingreso[0][2]}%</div>
-                            </td>
-                            <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger"><i class="fa-solid fa-xmark"></i></div>
-                        </tr></tbody>
+
+                        <!-- tabla donde se pushea la info del storage -->
+                        <tbody id="tabla_ingreso"></tbody>
+
                     </table>
                 </div>
                 <div class=" tabla mt-4">
@@ -92,12 +87,13 @@
                                     <div>${new_number}</div>
                                     <div id="div_hover" class="text-danger">${total_data_egreso[0][2]}%</div>
                                 </td>
-                                <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger"><i class="fa-solid fa-xmark"></i></div>
+                                <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger"><i
+                                        class="fa-solid fa-xmark"></i></div>
                             </tr>
                         </tbody>
                     </table>
+                </div>
             </div>
-        </div>
 
         </div>
     </main>

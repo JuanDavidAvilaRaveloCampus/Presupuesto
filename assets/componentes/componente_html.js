@@ -4,9 +4,22 @@ import config from "../config/config.js";
 export default {
     show_data() {
 
-        let presupuesto = 1;
-        
+        //valores para pushear la data e
+        let tabla_ingreso = document.querySelector('#tabla_ingreso');
+        let tabla_egreso = document.querySelector('#tabla_egreso');
+
+        //valores totales a mostrar en presupuesto
         let mostrar_presupuesto = document.querySelector('#presupuesto');
+        let ingreso_total = document.querySelector('#ingreso_total');
+        let egreso_total = document.querySelector('#egreso_total');
+
+        let egresos_placebo = 0;
+        let ingresos_placebo = 0;
+
+        //placebo
+        ingreso_total.textContent = '$0';
+        mostrar_presupuesto.textContent = '$0';
+        egreso_total.textContent = '$0';
 
         if (localStorage.data) { // localStorage.(nombre con el que se guardó la data en el storage)
         } else {
@@ -22,21 +35,91 @@ export default {
             let storage = JSON.parse(localStorage.getItem('data')); //trae data storage 
 
             if (data_form.option == 'ingreso' && data_form.name != '' && data_form.valor != '') {
-
                 storage.estructura_data.data_ingreso.unshift(data_form);
-                
-                storage.estructura_data.data_ingreso.map((val,id)=>{
-                    
-                    presupuesto += Number(val.valor)
-                    
-                    console.log(presupuesto);
+                //hasChildNodes verifica si tabla_ingreso tiene hijos
+                if (tabla_ingreso.hasChildNodes()) {
+                    while (tabla_ingreso.firstChild) {
+                        tabla_ingreso.removeChild(tabla_ingreso.firstChild);
+                    };
+                };
+
+                ingresos_placebo = 0;
+
+                //saca el total de ingresos
+                for (let i = 0; i < storage.estructura_data.data_egreso.length; i++) {
+                    ingresos_placebo += Number(storage.estructura_data.data_egreso[i].valor);
+                    console.log(ingresos_placebo);
+                };
+
+                storage.estructura_data.data_ingreso.map((val, id) => {
+                    //crea el porcentaje para cada iteración segun el total
+                    let a = porcentaje(ingresos_placebo, val.valor);
+                    //imprime toda la data de la tabla correspondiente
+                    document.querySelector('#tabla_ingreso').insertAdjacentHTML('beforeend', `
+                        <tr class="position-relative">
+                            <td class="container-fluid d-flex justify-content-between ">
+                                <div>${val.name}</div>
+                                <div>${val.valor}</div>
+                                <div id="div_hover" class="text-success">${a}</div>
+                            </td>
+                            <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                        </tr>
+                    `)
                 });
 
-            } else {
+                console.log(`ingreso listo`);
+
+            } else if (data_form.option == 'egreso' && data_form.name != '' && data_form.valor != '') {
                 storage.estructura_data.data_egreso.unshift(data_form);
+
+                if (tabla_egreso.hasChildNodes()) {
+                    while (tabla_egreso.firstChild) {
+                        tabla_egreso.removeChild(tabla_egreso.firstChild);
+                    };
+                };
+
+                egresos_placebo = 0;
+
+                for (let i = 0; i < storage.estructura_data.data_egreso.length; i++) {
+                    egresos_placebo += Number(storage.estructura_data.data_egreso[i].valor);
+                    console.log(egresos_placebo);
+                }
+
+                storage.estructura_data.data_egreso.map((val, id) => {
+                    //asigna a "a" el porcentaje según el total de egresos
+                    var a = porcentaje(egresos_placebo, val.valor);
+
+                    document.querySelector('#tabla_egreso').insertAdjacentHTML('beforeend', `
+                        <tr class="position-relative">
+                            <td class="container-fluid d-flex justify-content-between ">
+                                <div>${val.name}</div>
+                                <div>${val.valor}</div>
+                                <div id="div_hover" class="text-danger">${a}%</div>
+                            </td>
+                            <div id="btn-btn_eliminar_egreso" class="position-absolute end-0 text-danger">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                        </tr>
+                    `)
+                });
+                
+                console.log(`egreso listo`);
             };
 
-            mostrar_presupuesto.append(presupuesto);
+            let presupuesto = ingresos_placebo + egresos_placebo;
+            console.log(presupuesto);
+            
+            console.log(`parte 1`);
+            /*
+            muestra el presupuesto en pantalla por medio del textContent al ingreso_total
+            el cual está enlazado con un id para que se imprima
+            */
+
+           
+
+
             localStorage.setItem('data', JSON.stringify(storage));
 
             /*
@@ -45,7 +128,28 @@ export default {
             * option_valor : valor del input type:"number"
             */
 
-            // console.log({ option_select: data_form.option });
+            //conversor a moneda
+            function moneda(p) {
+                return p.toLocaleString('en-EU', {
+                    style: 'currency',
+                    currency: 'USD',
+                    currencyDisplay: 'symbol',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: true
+                });
+
+            }
+
+            //crador de porcentajes
+            function porcentaje(t, v) {
+                let total = Number(t);
+                let valor = Number(v);
+                let porcentaje = valor * 100 / total;
+                let sintaxis = porcentaje.toFixed(2);
+                return sintaxis.toLocaleString('en-US') + "%";
+            }
+            // console.log( { option_select: data_form.option });
             // console.log({ option_name: data_form.name });
             // console.log({ option_select: data_form.valor });
         })
