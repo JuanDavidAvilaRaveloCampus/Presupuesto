@@ -113,9 +113,10 @@ export default {
             let presupuesto = ingresos - egresos;
 
             mostrar_presupuesto.textContent = moneda(presupuesto);
-            ingreso_total = moneda(ingresos);
-            egreso_total = moneda(egresos);
-            porcentaje_egreso_total = porcentaje(presupuesto,egresos)
+            ingreso_total.textContent = moneda(ingresos);
+            egreso_total.textContent = moneda(egresos);
+            porcentaje_egreso_total.textContent = porcentaje(presupuesto,ingresos)
+            // ingreso_total = moneda()
             console.log(presupuesto);
             
             console.log(`parte 1`);
