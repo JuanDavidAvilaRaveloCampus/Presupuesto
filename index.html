@@ -24,12 +24,12 @@
     <main>
         <div class="container-fluid d-flex justify-content-center" id="mostrar_presupuesto">
             <!-- PRESUPUESTRO -->
-            <div class="d-flex flex-column text-center  tamaño_presupuesto posicionar" id="show_presupuesto">
-                <div class="mt-4 d-flex flex-column container-fluid text-white">
+            <div class="d-flex flex-column text-center tamaño_presupuesto card" id="show_presupuesto">
+                <div class="mt-4 d-flex flex-column container-fluid text-white ">
                     <span>Presupuesto Disponible</span>
                     <h2 class="mt-2" id="presupuesto"></h2>
                 </div>
-                <div class="container-fluid  bajar_contador posicionar_div px-0 py-2">
+                <div class="container-fluid bajar_contador posicionar_div px-0 py-2">
                     <div class="container-fluid d-flex justify-content-between py-2 ingresos">
                         <span class="text-dark"><b>INGRESOS</b></span>
                         <span class="text-white" id="ingreso_total">$0</span>
@@ -48,17 +48,18 @@
         </div>
         <!-- NAVAR -->
         <div>
-            <nav class="navbar ">
+            <nav class="navbar">
                 <!-- NAVAR  DATA_INGRESO -->
                 <form class="container-fluid d-flex justify-content-center gap-3 mt-2" id="formulario">
                     <select name="option" id="options">
                         <option value="ingreso">Ingreso</option>
                         <option value="egreso">Egreso</option>
                     </select>
-                    <input id="data_name" name="name" type="text" placeholder="Ingrese nombre del dato a almacenar">
-                    <input id="data_amout" name="valor" type="number" placeholder="Ingrese el monto">
+                    <input id="data_name" name="name" type="text" placeholder="Ingrese nombre del dato a almacenar" required>
+                    <input id="data_amout" name="valor" type="number" placeholder="Ingrese el monto" required>
                     <!-- BTON -->
                     <input type="submit" value="" id="btn" class="btn">
+                    <i class="fa-solid fa-check position-absolute a"></i>
                 </form>
 
 
@@ -84,8 +85,8 @@
                     </table>
                 </div>
             </div>
-
         </div>
+        <div id="graficas"></div>
     </main>
 
 

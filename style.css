@@ -22,9 +22,6 @@
     background-repeat: no-repeat;
 }
 
-.posicionar{
-    position: relative;
-}
 
 .posicionar_div {
     position: absolute;
@@ -61,12 +58,17 @@
     height: 2.5rem;
     width: 2.5rem;
     font-size: 1.2rem;
-    background: rgba(43, 7, 84, 0.712);
+    background: rgba(255, 94, 25, 0.8);
     color: white;
 }
 /* table */
 .div_body {
     height: 58vh;
+}
+
+.card {
+    background: none;
+    border: none;
 }
 
 .tabla {
@@ -81,6 +83,11 @@
     left: 38%;
     bottom: -3%;
     font-size: 1.5rem;
+}
+
+.a {
+    right: 30.5%;
+    color: white;
 }
 
 

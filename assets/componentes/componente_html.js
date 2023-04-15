@@ -1,6 +1,5 @@
 import config from "../config/config.js";
 
-
 export default {
     show_data() {
 
@@ -50,7 +49,6 @@ export default {
                 //saca el total de ingresos
                 for (let i = 0; i < storage.estructura_data.data_ingreso.length; i++) {
                     ingresos += Number(storage.estructura_data.data_ingreso[i].valor);
-                    console.log(ingresos);
                 };
 
                 storage.estructura_data.data_ingreso.map((val, id) => {
@@ -71,7 +69,7 @@ export default {
                     `)
                 });
 
-                console.log(`ingreso listo`);
+                grafica_ingreso('hola',150);
 
             } else if (data_form.option == 'egreso' && data_form.name != '' && data_form.valor != '') {
                 storage.estructura_data.data_egreso.unshift(data_form);
@@ -106,8 +104,13 @@ export default {
                         </tr>
                     `)
                 });
-                
-                console.log(`egreso listo`);
+
+                // grafica_egreso(val.name,val.valor);
+
+
+
+            } else {
+                alert('Por favor ')
             };
 
             let presupuesto = ingresos - egresos;
@@ -115,18 +118,11 @@ export default {
             mostrar_presupuesto.textContent = moneda(presupuesto);
             ingreso_total.textContent = moneda(ingresos);
             egreso_total.textContent = moneda(egresos);
-            porcentaje_egreso_total.textContent = porcentaje(presupuesto,ingresos)
-            // ingreso_total = moneda()
-            console.log(presupuesto);
-            
-            console.log(`parte 1`);
+            porcentaje_egreso_total.textContent = porcentaje(ingresos, egresos);
             /*
             muestra el presupuesto en pantalla por medio del textContent al ingreso_total
             el cual está enlazado con un id para que se imprima
             */
-
-           
-
 
             localStorage.setItem('data', JSON.stringify(storage));
 
@@ -157,9 +153,69 @@ export default {
                 let sintaxis = porcentaje.toFixed(2);
                 return sintaxis.toLocaleString('en-US') + "%";
             }
-            // console.log( { option_select: data_form.option });
-            // console.log({ option_name: data_form.name });
-            // console.log({ option_select: data_form.valor });
-        })
-    }
+        });
+
+        function grafica_ingreso(name, value){
+            let grafica = echart.init(document.querySelector('#graficas'));
+
+            let option = {
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        data: [
+                            120,
+                            {
+                                value: 200,
+                                itemStyle: {
+                                    color: '#a90000'
+                                }
+                            },
+                        ],
+                        type: 'bar'
+                        
+                    }
+                ]
+            }; 
+
+            option.xAxis.data.push(name);
+            option.series[0].data.push(value)
+        };
+
+        function grafica_egreso(name,value){
+
+            let grafica = echarts.init(document.querySelector('#graficas'));
+
+            let option = {
+                xAxis: {
+                    type: 'category',
+                    data: []
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        data: [
+                            {
+                            },
+                        ],
+                        type: 'bar'
+                        
+                    }
+                ]
+            }; 
+
+            option.xAxis.data.push(name);
+            option.series[0].data.push({value : value,itemStyle: {color: '#a90000'}});
+
+            grafica.setOption(option);
+        };
+    },
 }
+
