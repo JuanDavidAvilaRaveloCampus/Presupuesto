@@ -155,67 +155,67 @@ export default {
             }
         });
 
-        function grafica_ingreso(name, value){
-            let grafica = echart.init(document.querySelector('#graficas'));
-
-            let option = {
-                xAxis: {
-                    type: 'category',
-                    data: []
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [
-                    {
-                        data: [
-                            120,
-                            {
-                                value: 200,
-                                itemStyle: {
-                                    color: '#a90000'
-                                }
-                            },
-                        ],
-                        type: 'bar'
-                        
-                    }
-                ]
-            }; 
-
-            option.xAxis.data.push(name);
-            option.series[0].data.push(value)
-        };
-
-        function grafica_egreso(name,value){
-
-            let grafica = echarts.init(document.querySelector('#graficas'));
-
-            let option = {
-                xAxis: {
-                    type: 'category',
-                    data: []
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [
-                    {
-                        data: [
-                            {
-                            },
-                        ],
-                        type: 'bar'
-                        
-                    }
-                ]
-            }; 
-
-            option.xAxis.data.push(name);
-            option.series[0].data.push({value : value,itemStyle: {color: '#a90000'}});
-
-            grafica.setOption(option);
-        };
+        //function grafica_ingreso(name, value){
+        //    let grafica = echart.init(document.querySelector('#graficas'));
+//
+        //    let option = {
+        //        xAxis: {
+        //            type: 'category',
+        //            data: []
+        //        },
+        //        yAxis: {
+        //            type: 'value'
+        //        },
+        //        series: [
+        //            {
+        //                data: [
+        //                    120,
+        //                    {
+        //                        value: 200,
+        //                        itemStyle: {
+        //                            color: '#a90000'
+        //                        }
+        //                    },
+        //                ],
+        //                type: 'bar'
+        //                
+        //            }
+        //        ]
+        //    }; 
+//
+        //    option.xAxis.data.push(name);
+        //    option.series[0].data.push(value)
+        //};
+//
+        //function grafica_egreso(name,value){
+//
+        //    let grafica = echarts.init(document.querySelector('#graficas'));
+//
+        //    let option = {
+        //        xAxis: {
+        //            type: 'category',
+        //            data: []
+        //        },
+        //        yAxis: {
+        //            type: 'value'
+        //        },
+        //        series: [
+        //            {
+        //                data: [
+        //                    {
+        //                    },
+        //                ],
+        //                type: 'bar'
+        //                
+        //            }
+        //        ]
+        //    }; 
+//
+        //    option.xAxis.data.push(name);
+        //    option.series[0].data.push({value : value,itemStyle: {color: '#a90000'}});
+//
+        //    grafica.setOption(option);
+        //};
     },
 }
 
