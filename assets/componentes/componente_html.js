@@ -69,7 +69,7 @@ export default {
                     `)
                 });
 
-                grafica_ingreso('hola',150);
+                //grafica_ingreso('hola',150);//
 
             } else if (data_form.option == 'egreso' && data_form.name != '' && data_form.valor != '') {
                 storage.estructura_data.data_egreso.unshift(data_form);
